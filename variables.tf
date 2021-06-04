@@ -1,6 +1,5 @@
 variable "aviatrix_vpc" {
   description = "VPC Object with all attributes"
-  type        = string
 }
 
 variable "secondary_cidr" {
