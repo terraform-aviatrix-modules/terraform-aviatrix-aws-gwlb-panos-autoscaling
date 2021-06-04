@@ -24,7 +24,7 @@ locals {
   newbits  = 28 - local.cidrbits
   netnum   = pow(2, local.newbits)
 
-  lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 0)
-  lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
+  lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
+  lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 2)
 
 }
