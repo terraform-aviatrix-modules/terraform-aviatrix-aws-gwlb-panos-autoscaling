@@ -11,6 +11,9 @@ resource "aws_subnet" "LambdaMGMTSubnetAz1" {
   tags = {
     Name = "LambdaMGMTSubnetAz1"
   }
+
+  depends_on = [ aws_vpc_ipv4_cidr_block_association.secondary_cidr ]
+
 }
 
 resource "aws_subnet" "LambdaMGMTSubnetAz2" {
@@ -21,6 +24,9 @@ resource "aws_subnet" "LambdaMGMTSubnetAz2" {
   tags = {
     Name = "LambdaMGMTSubnetAz2"
   }
+  
+  depends_on = [ aws_vpc_ipv4_cidr_block_association.secondary_cidr ]
+
 }
 
 resource "aws_route_table" "LambdaMGMTRouteTable1" {
