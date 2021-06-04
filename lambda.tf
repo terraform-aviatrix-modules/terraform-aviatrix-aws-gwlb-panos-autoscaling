@@ -267,11 +267,11 @@ resource "aws_security_group" "VPCSecurityGroup" {
 }
 
 resource "aws_lambda_function" "FwInit" {
-  filename      = "resources/panw-aws.zip"
+  filename      = "${path.module}/resources/panw-aws.zip"
   function_name = "FwInit"
   role          = aws_iam_role.LambdaExecutionRole.arn
   handler       = "fw_init.lambda_handler"
-  source_code_hash = filebase64sha256("resources/panw-aws.zip")
+  source_code_hash = filebase64sha256("${path.module}/resources/panw-aws.zip")
 
   runtime = "python3.6"
   memory_size = 512
