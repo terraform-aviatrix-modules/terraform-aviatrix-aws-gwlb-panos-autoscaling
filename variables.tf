@@ -21,7 +21,7 @@ variable "az2" {
 }
 
 locals {
-  cidrbits = tonumber(split("/", var.aviatrix_vpc.cidr)[1])
+  cidrbits = tonumber(split("/", var.secondary_cidr)[1])
   newbits  = 28 - local.cidrbits
   netnum   = pow(2, local.newbits)
 
