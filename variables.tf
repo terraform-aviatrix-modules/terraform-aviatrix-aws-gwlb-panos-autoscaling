@@ -1,6 +1,6 @@
 variable "aviatrix_vpc" {
   description = "VPC Object with all attributes"
-  type = string
+  type        = string
 }
 
 variable "secondary_cidr" {
@@ -21,11 +21,11 @@ variable "az2" {
 }
 
 locals {
-  cidrbits                = tonumber(split("/", var.aviatrix_vpc.cidr)[1])
-  newbits                 = 28 - local.cidrbits
-  netnum                  = pow(2, local.newbits)
+  cidrbits = tonumber(split("/", var.aviatrix_vpc.cidr)[1])
+  newbits  = 28 - local.cidrbits
+  netnum   = pow(2, local.newbits)
 
-  lambda1_subnet          = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 0)
-  lambda2_subnet          = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
+  lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 0)
+  lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
 
 }
