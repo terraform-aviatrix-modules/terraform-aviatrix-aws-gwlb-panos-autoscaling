@@ -19,6 +19,7 @@ module "panw_autoscaling_cluster" {
   source  = "terraform-aviatrix-modules/aws-gwlb-panos-autoscaling/aviatrix"
   version = "1.0.0"
 
+  secondary_cidr = "10.1.1.0/24"
   transit_gw = "eu-west-1-transit"
   region = "eu-west-1"
   vpc_id = "vpc-982347978873490123"
