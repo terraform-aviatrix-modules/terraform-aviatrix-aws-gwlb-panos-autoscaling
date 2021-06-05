@@ -47,7 +47,7 @@ variable "Az2NatGW" {
 }
 
 variable "ASGScaleMap" {
-  type = map(string)
+  type = map(any)
   default = {
     "MaxInstances" : { "ASG" : "5" },
     "ScaleUpThreshold" : { "ASG" : "80" },
