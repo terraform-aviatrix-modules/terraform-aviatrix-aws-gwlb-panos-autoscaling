@@ -36,6 +36,16 @@ variable "fw_instance_size" {
   default     = "m4.xlarge"
 }
 
+variable "Az1NatGW" {
+  description = "NAT GW ID for AZ1"
+  type        = string
+}
+
+variable "Az2NatGW" {
+  description = "NAT GW ID for AZ2"
+  type        = string
+}
+
 locals {
   cidrbits = tonumber(split("/", var.secondary_cidr)[1])
   newbits  = 28 - local.cidrbits
@@ -43,4 +53,6 @@ locals {
 
   lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
   lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 2)
+  trust1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 3)
+  trust2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 4)
 }

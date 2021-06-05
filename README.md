@@ -21,6 +21,9 @@ module "panw_autoscaling_cluster" {
 
   secondary_cidr = "10.1.1.0/24"
   aviatrix_vpc = module.transit_firenet.vpc
+  Az1NatGW = 
+  Az2NatGW = 
+  
 }
 ```
 
@@ -32,6 +35,8 @@ key | value
 secondary_cidr |
 aviatrix_vpc |
 ssh_key_name | 
+Az1NatGW |
+Az2NatGW |
 
 The following variables are optional:
 
