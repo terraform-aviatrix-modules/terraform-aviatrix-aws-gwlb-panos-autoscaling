@@ -2,7 +2,7 @@
 
 ### Description
 This module was developed to be used in conjuntion with terraform-aviatrix-aws-transit-firenet, to extend the Aviatrix firenet function with an auto scaling Palo Alto firewall environment using a AWS GWLB.
-This module is modeled after this CloudFormation template provided by Palo Alto Networks: https://github.com/PaloAltoNetworks/AWS-GWLB-VMSeries/tree/main/cft%20with%20autoscale, and adapted for use with Aviatrix' transit architecture.
+This module is modeled after this CloudFormation template provided by Palo Alto Networks: https://github.com/PaloAltoNetworks/AWS-GWLB-VMSeries/tree/main/cft%20with%20autoscale, and adapted for use with Aviatrix' transit architecture. This module is hardcoded for 2 availability zones.
 
 ### Diagram
 \<Provide a diagram of the high level constructs thet will be created by this module>
