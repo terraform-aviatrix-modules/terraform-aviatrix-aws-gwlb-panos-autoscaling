@@ -30,9 +30,9 @@ data "aws_subnet" "Az2NatSubnet" {
 }
 
 data "aws_nat_gateway" "Az1NatGW" {
-  subnet_id = data.aws_subnet.Az1NatSubnet
+  subnet_id = data.aws_subnet.Az1NatSubnet.id
 }
 
 data "aws_nat_gateway" "Az2NatGW" {
-  subnet_id = data.aws_subnet.Az2NatSubnet
+  subnet_id = data.aws_subnet.Az2NatSubnet.id
 }
