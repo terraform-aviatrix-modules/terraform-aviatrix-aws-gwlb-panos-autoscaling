@@ -21,8 +21,8 @@ module "panw_autoscaling_cluster" {
 
   secondary_cidr = "10.1.1.0/24"
   aviatrix_vpc = module.transit_firenet.vpc
-  Az1NatGW = 
-  Az2NatGW = 
+  Az1NatGW = "nat-00000000000000000"
+  Az2NatGW = "nat-00000000000000000"
   
 }
 ```
