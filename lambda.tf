@@ -3,70 +3,62 @@ resource "aws_iam_role" "LambdaExecutionRole" {
 
   assume_role_policy = <<EOF
 {
-                "Version": "2012-10-17",
-                "Statement": [{
-                    "Effect": "Allow",
-                    "Action": ["s3:ListBucket", "s3:GetObject"],
-                    "Resource": ["*"]
-                },
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": "*"
+        },
                 {
                         "Effect": "Allow",
                         "Action": ["iam:UpdateAssumeRolePolicy","iam:GetRole","iam:PassRole", "iam:CreateServiceLinkedRole"],
-                        "Resource": ["*"]
+                        "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "ec2:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "events:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "lambda:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "autoscaling:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
                     "Action": [
                         "sqs:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
 
                 {
@@ -74,9 +66,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                     "Action": [
                         "elasticloadbalancing:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                 "Effect": "Allow",
@@ -93,9 +83,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                     "Action": [
                         "logs:*"
                     ],
-                    "Resource": [
-                        "*"
-                    ]
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
