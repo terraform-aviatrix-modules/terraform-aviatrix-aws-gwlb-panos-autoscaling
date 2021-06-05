@@ -11,7 +11,7 @@ data "aws_ami" "panos_ami" {
   owners = ["679593333241"] # Palo Alto
 }
 
-data "aws_nat_gateway" "Az1NatSubnet" {
+data "aws_subnet" "Az1NatSubnet" {
     availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
     vpc_id = var.aviatrix_vpc.vpc_id
     filter {
@@ -20,7 +20,7 @@ data "aws_nat_gateway" "Az1NatSubnet" {
     }
 }
 
-data "aws_nat_gateway" "Az2NatSubnet" {
+data "aws_subnet" "Az2NatSubnet" {
     availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
     vpc_id = var.aviatrix_vpc.vpc_id
     filter {
