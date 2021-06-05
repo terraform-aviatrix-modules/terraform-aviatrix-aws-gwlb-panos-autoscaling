@@ -44,19 +44,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 {
                     "Effect": "Allow",
                     "Action": [
-                        "lambda:AddPermission",
-                        "lambda:CreateEventSourceMapping",
-                        "lambda:CreateFunction",
-                        "lambda:DeleteEventSourceMapping",
-                        "lambda:DeleteFunction",
-                        "lambda:GetEventSourceMapping",
-                        "lambda:ListEventSourceMappings",
-                        "lambda:RemovePermission",
-                        "lambda:UpdateEventSourceMapping",
-                        "lambda:UpdateFunctionCode",
-                        "lambda:UpdateFunctionConfiguration",
-                        "lambda:GetFunction",
-                        "lambda:ListFunctions"
+                        "lambda:*"
                     ],
                     "Resource": [
                         "*"
@@ -74,11 +62,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 {
                     "Effect": "Allow",
                     "Action": [
-                        "sqs:ReceiveMessage",
-                        "sqs:SendMessage",
-                        "sqs:SetQueueAttributes",
-                        "sqs:PurgeQueue",
-                        "sqs:DeleteMessage"
+                        "sqs:*"
                     ],
                     "Resource": [
                         "*"
@@ -88,33 +72,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 {
                     "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:CreateLoadBalancer",
-                        "elasticloadbalancing:CreateListener",
-                        "elasticloadbalancing:CreateTargetGroup",
-                        "elasticloadbalancing:CreateRule",
-                        "elasticloadbalancing:DeleteLoadBalancer",
-                        "elasticloadbalancing:DeleteListener",
-                        "elasticloadbalancing:DeleteTargetGroup",
-                        "elasticloadbalancing:DeleteRule",
-                        "elasticloadbalancing:RegisterTargets",
-                        "elasticloadbalancing:DeregisterTargets",
-                        "elasticloadbalancing:ModifyListener",
-                        "elasticloadbalancing:ModifyRule",
-                        "elasticloadbalancing:ModifyTargetGroup",
-                        "elasticloadbalancing:ModifyTargetGroupAttributes",
-                        "elasticloadbalancing:AddTags",
-                        "elasticloadbalancing:AttachLoadBalancerToSubnets",
-                        "elasticloadbalancing:ConfigureHealthCheck",
-                        "elasticloadbalancing:DescribeInstanceHealth",
-                        "elasticloadbalancing:DescribeLoadBalancerAttributes",
-                        "elasticloadbalancing:DescribeLoadBalancerPolicyTypes",
-                        "elasticloadbalancing:DescribeLoadBalancerPolicies",
-                        "elasticloadbalancing:DescribeLoadBalancers",
-                        "elasticloadbalancing:DescribeTags",
-                        "elasticloadbalancing:DetachLoadBalancerFromSubnets",
-                        "elasticloadbalancing:ModifyLoadBalancerAttributes",
-                        "elasticloadbalancing:RemoveTags",
-                        "elasticloadbalancing:DescribeTargetGroups"
+                        "elasticloadbalancing:*"
                     ],
                     "Resource": [
                         "*"
@@ -133,12 +91,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 {
                     "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogGroup",
-                        "logs:CreateLogStream",
-                        "logs:PutDestination",
-                        "logs:PutDestinationPolicy",
-                        "logs:PutLogEvents",
-                        "logs:PutMetricFilter"
+                        "logs:*"
                     ],
                     "Resource": [
                         "*"
