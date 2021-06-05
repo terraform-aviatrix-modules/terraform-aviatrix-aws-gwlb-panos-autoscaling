@@ -1,7 +1,24 @@
 resource "aws_iam_role" "LambdaExecutionRole" {
-  name = "LambdaExecutionRole"
-
+  name               = "LambdaExecutionRole"
   assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+resource "aws_iam_policy" "LambdaExecutionPolicy" {
+  name   = "LambdaExecutionPolicy"
+  policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -12,11 +29,16 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 "s3:List*"
             ],
             "Resource": "*"
-        }]
+        }
+    ]
 }
 EOF
 }
 
+resource "aws_iam_role_policy_attachment" "aviatrix-palo-alto-bootstrap-iam-policy-role-attachment" {
+  role       = aws_iam_role.LambdaExecutionRole.name
+  policy_arn = aws_iam_policy.LambdaExecutionPolicy.arn
+}
 
 resource "aws_security_group" "VPCSecurityGroup" {
   name        = "VPCSecurityGroup"
