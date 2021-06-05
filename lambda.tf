@@ -1,38 +1,11 @@
 resource "aws_iam_role" "LambdaExecutionRole" {
   name               = "LambdaExecutionRole"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
+  assume_role_policy = file("${path.module}/resources/lambda_iam_role.json")
 }
-EOF
-}
+
 resource "aws_iam_policy" "LambdaExecutionPolicy" {
   name   = "LambdaExecutionPolicy"
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:Get*",
-                "s3:List*"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-EOF
+  policy = file("${path.module}/resources/lambda_iam_policy.json")
 }
 
 resource "aws_iam_role_policy_attachment" "aviatrix-palo-alto-bootstrap-iam-policy-role-attachment" {
