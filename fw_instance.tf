@@ -29,7 +29,7 @@ resource "aws_launch_template" "FWLaunchTemplate" {
   }
 
   iam_instance_profile {
-    name = iam_instance_profile.FirewallBootstrapInstanceProfile.name
+    name = aws_iam_instance_profile.FirewallBootstrapInstanceProfile.name
   }
 
   network_interfaces {
