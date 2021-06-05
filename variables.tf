@@ -36,7 +36,6 @@ variable "fw_instance_size" {
   default     = "m4.xlarge"
 }
 
-
 locals {
   cidrbits = tonumber(split("/", var.secondary_cidr)[1])
   newbits  = 28 - local.cidrbits
@@ -44,5 +43,4 @@ locals {
 
   lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
   lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 2)
-
 }

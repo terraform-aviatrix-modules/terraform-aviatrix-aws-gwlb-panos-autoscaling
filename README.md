@@ -20,8 +20,7 @@ module "panw_autoscaling_cluster" {
   version = "1.0.0"
 
   secondary_cidr = "10.1.1.0/24"
-  region = "eu-west-1"
-  vpc_id = "vpc-982347978873490123"
+  aviatrix_vpc = module.transit_firenet.vpc
 }
 ```
 
@@ -31,8 +30,7 @@ The following variables are required:
 key | value
 :--- | :---
 secondary_cidr |
-region |
-vpc_id |
+aviatrix_vpc |
 ssh_key_name | 
 
 The following variables are optional:
