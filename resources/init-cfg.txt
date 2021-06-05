@@ -1,0 +1,8 @@
+plugin-op-commands=aws-gwlb-inspect:enable
+type=dhcp-client
+hostname=
+vm-auth-key=
+panorama-server=
+tplname=
+dgname=
+dhcp-send-hostname=yes
