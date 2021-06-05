@@ -15,7 +15,7 @@ data "aws_subnet" "Az1NatSubnet" {
   availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
   vpc_id            = var.aviatrix_vpc.vpc_id
   filter {
-    name   = "name"
+    name   = "tag:Name"
     values = ["*gwlb-egress"]
   }
 }
@@ -24,7 +24,7 @@ data "aws_subnet" "Az2NatSubnet" {
   availability_zone = "${var.aviatrix_vpc.region}${var.az2}"
   vpc_id            = var.aviatrix_vpc.vpc_id
   filter {
-    name   = "name"
+    name   = "tag:Name"
     values = ["*gwlb-egress"]
   }
 }
