@@ -56,15 +56,15 @@ resource "aws_route_table_association" "LambdaMGMTSubnetRouteTableAssociation2" 
 }
 
 resource "aws_route" "LambdaMGMTRoute1" {
-  route_table_id            = aws_route_table.LambdaMGMTRouteTable1.id
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = var.Az1NatGW
+  route_table_id         = aws_route_table.LambdaMGMTRouteTable1.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = var.Az1NatGW
 }
 
 resource "aws_route" "LambdaMGMTRoute2" {
-  route_table_id            = aws_route_table.LambdaMGMTRouteTable2.id
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = var.Az2NatGW
+  route_table_id         = aws_route_table.LambdaMGMTRouteTable2.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = var.Az2NatGW
 }
 
 resource "aws_subnet" "TRUSTSubnetAz1" {
@@ -120,15 +120,15 @@ resource "aws_route_table_association" "TRUSTSubnetRouteTableAssociationNAT2" {
 }
 
 resource "aws_route" "TRUSTRouteNAT1" {
-  route_table_id            = aws_route_table.TRUSTRouteTableAz1.id
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = var.Az1NatGW
+  route_table_id         = aws_route_table.TRUSTRouteTableAz1.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = var.Az1NatGW
 }
 
 resource "aws_route" "TRUSTRouteNAT2" {
-  route_table_id            = aws_route_table.TRUSTRouteTableAz2.id
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = var.Az2NatGW
+  route_table_id         = aws_route_table.TRUSTRouteTableAz2.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = var.Az2NatGW
 }
 
 resource "aws_vpc_endpoint" "S3Endpoint1" {

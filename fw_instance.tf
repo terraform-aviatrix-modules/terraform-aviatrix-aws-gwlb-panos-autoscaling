@@ -38,7 +38,7 @@ resource "aws_launch_template" "FWLaunchTemplate" {
     security_groups             = [aws_security_group.TrustSecurityGroup.id]
   }
 
-  user_data = base64encode("vmseries-bootstrap-aws-s3bucket=\nmgmt-interface-swap=enable")
+  user_data = base64encode("vmseries-bootstrap-aws-s3bucket=${aws_s3_bucket.aviatrix-palo-alto-bootstrap-bucket.bucket}\nmgmt-interface-swap=enable")
 }
 
 resource "aws_iam_instance_profile" "FirewallBootstrapInstanceProfile" {

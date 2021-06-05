@@ -53,6 +53,6 @@ locals {
 
   lambda1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 1)
   lambda2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 2)
-  trust1_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 3)
-  trust2_subnet = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 4)
+  trust1_subnet  = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 3)
+  trust2_subnet  = cidrsubnet(var.secondary_cidr, local.newbits, local.netnum - 4)
 }
