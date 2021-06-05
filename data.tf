@@ -29,6 +29,42 @@ data "aws_subnet" "Az2NatSubnet" {
   }
 }
 
+data "aws_subnet" "Az1GWLBSubnet" {
+  availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "tag:Name"
+    values = ["*gwlb-pool"]
+  }
+}
+
+data "aws_subnet" "Az2GWLBSubnet" {
+  availability_zone = "${var.aviatrix_vpc.region}${var.az2}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "tag:Name"
+    values = ["*gwlb-pool"]
+  }
+}
+
+data "aws_subnet" "Az1DMZFWSubnet" {
+  availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "tag:Name"
+    values = ["*dmz-firewall"]
+  }
+}
+
+data "aws_subnet" "Az2DMZFWSubnet" {
+  availability_zone = "${var.aviatrix_vpc.region}${var.az2}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "tag:Name"
+    values = ["*dmz-firewall"]
+  }
+}
+
 data "aws_nat_gateway" "Az1NatGW" {
   subnet_id = data.aws_subnet.Az1NatSubnet.id
 }
