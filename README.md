@@ -33,6 +33,7 @@ key | value
 secondary_cidr |
 region |
 vpc_id |
+ssh_key_name | 
 
 The following variables are optional:
 

@@ -41,6 +41,10 @@ resource "aws_launch_template" "FWLaunchTemplate" {
   user_data = "vmseries-bootstrap-aws-s3bucket=\nmgmt-interface-swap=enable"
 }
 
+resource "aws_iam_instance_profile" "FirewallBootstrapInstanceProfile" {
+  name = "FirewallBootstrapInstanceProfile"
+  role = aws_iam_role.FirewallBootstrapRole.name
+}
 
 resource "aws_security_group" "TrustSecurityGroup" {
   name        = "TrustSecurityGroup"
