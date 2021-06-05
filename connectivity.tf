@@ -82,3 +82,4 @@ resource "aws_vpc_endpoint_route_table_association" "S3Endpoint2" {
   route_table_id  = aws_route_table.LambdaMGMTRouteTable2.id
   vpc_endpoint_id = aws_vpc_endpoint.S3Endpoint2.id
 }
+

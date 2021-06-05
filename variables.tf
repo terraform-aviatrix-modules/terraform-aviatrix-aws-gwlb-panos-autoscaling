@@ -33,7 +33,7 @@ variable "panos_image_name" {
 variable "fw_instance_size" {
   description = "AWS Instance size for the NGFW's"
   type        = string
-  default     = "c5.xlarge"
+  default     = "m4.xlarge"
 }
 
 

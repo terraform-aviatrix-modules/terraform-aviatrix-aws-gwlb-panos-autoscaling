@@ -1,5 +1,12 @@
+#Random string for unique s3 bucket
+resource "random_string" "bucket" {
+  length  = 8
+  special = false
+  upper   = false
+}
+
 resource "aws_s3_bucket" "aviatrix-palo-alto-bootstrap-bucket" {
-  bucket = "aviatrix-palo-alto-bootstrap-bucket"
+  bucket = "aviatrix-palo-alto-bootstrap-bucket-${random_string.bucket.result}"
   acl    = "private"
 }
 resource "aws_s3_bucket_object" "folder_config" {
