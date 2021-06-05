@@ -8,7 +8,7 @@ resource "aws_iam_policy" "LambdaExecutionPolicy" {
   policy = file("${path.module}/resources/lambda_iam_policy.json")
 }
 
-resource "aws_iam_role_policy_attachment" "aviatrix-palo-alto-bootstrap-iam-policy-role-attachment" {
+resource "aws_iam_role_policy_attachment" "LambdaExecutionPolicyAttachment" {
   role       = aws_iam_role.LambdaExecutionRole.name
   policy_arn = aws_iam_policy.LambdaExecutionPolicy.arn
 }
