@@ -12,21 +12,21 @@ data "aws_ami" "panos_ami" {
 }
 
 data "aws_subnet" "Az1NatSubnet" {
-    availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
-    vpc_id = var.aviatrix_vpc.vpc_id
-    filter {
-        name   = "name"
-        values = ["*gwlb-egress"]      
-    }
+  availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "name"
+    values = ["*gwlb-egress"]
+  }
 }
 
 data "aws_subnet" "Az2NatSubnet" {
-    availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
-    vpc_id = var.aviatrix_vpc.vpc_id
-    filter {
-        name   = "name"
-        values = ["*gwlb-egress"]      
-    }
+  availability_zone = "${var.aviatrix_vpc.region}${var.az2}"
+  vpc_id            = var.aviatrix_vpc.vpc_id
+  filter {
+    name   = "name"
+    values = ["*gwlb-egress"]
+  }
 }
 
 data "aws_nat_gateway" "Az1NatGW" {
