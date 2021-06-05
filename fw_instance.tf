@@ -12,13 +12,13 @@ data "aws_ami" "panos_ami" {
 }
 
 resource "aws_launch_template" "FWLaunchTemplate" {
-  name = "FWLaunchTemplate"
-  image_id = data.aws_ami.panos_ami.id
-  instance_type = var.fw_instance_size
-  key_name = var.ssh_key_name
-  ebs_optimized = true
+  name                    = "FWLaunchTemplate"
+  image_id                = data.aws_ami.panos_ami.id
+  instance_type           = var.fw_instance_size
+  key_name                = var.ssh_key_name
+  ebs_optimized           = true
   disable_api_termination = true
-  vpc_security_group_ids = [aws_security_group.TrustSecurityGroup.id]
+  vpc_security_group_ids  = [aws_security_group.TrustSecurityGroup.id]
 
   block_device_mappings {
     device_name = "/dev/xvda"
@@ -34,8 +34,8 @@ resource "aws_launch_template" "FWLaunchTemplate" {
 
   network_interfaces {
     associate_public_ip_address = false
-    device_index = 0
-    security_groups = [aws_security_group.TrustSecurityGroup.id]
+    device_index                = 0
+    security_groups             = [aws_security_group.TrustSecurityGroup.id]
   }
 
   user_data = "vmseries-bootstrap-aws-s3bucket=\nmgmt-interface-swap=enable"
@@ -55,7 +55,7 @@ resource "aws_security_group" "TrustSecurityGroup" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-    ingress {
+  ingress {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
