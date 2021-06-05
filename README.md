@@ -20,7 +20,6 @@ module "panw_autoscaling_cluster" {
   version = "1.0.0"
 
   secondary_cidr = "10.1.1.0/24"
-  transit_gw = "eu-west-1-transit"
   region = "eu-west-1"
   vpc_id = "vpc-982347978873490123"
 }
@@ -31,13 +30,18 @@ The following variables are required:
 
 key | value
 :--- | :---
-\<keyname> | \<description of value that should be provided in this variable>
+secondary_cidr |
+region |
+vpc_id |
 
 The following variables are optional:
 
 key | default | value 
 :---|:---|:---
-\<keyname> | \<default value> | \<description of value that should be provided in this variable>
+panos_image_name | PA-VM-AWS-* | Name of the panos image for AMI lookup and aws_launch_template creation.
+az1 | "a" |
+az2 | "b" |
+fw_instance_size | c5.xlarge | Size of the firewall instances
 
 ### Outputs
 This module will return the following outputs:

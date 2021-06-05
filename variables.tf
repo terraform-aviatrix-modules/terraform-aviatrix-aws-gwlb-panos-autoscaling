@@ -7,6 +7,11 @@ variable "secondary_cidr" {
   type        = string
 }
 
+variable "ssh_key_name" {
+  description = "Name of SSH keypair to use for firewall"
+  type        = string
+}
+
 variable "az1" {
   description = "Concatenates with region to form az names. e.g. eu-central-1a."
   type        = string
@@ -18,6 +23,19 @@ variable "az2" {
   type        = string
   default     = "b"
 }
+
+variable "panos_image_name" {
+  description = "Panos OS AMI image name"
+  type        = string
+  default     = "PA-VM-AWS-*"
+}
+
+variable "fw_instance_size" {
+  description = "AWS Instance size for the NGFW's"
+  type        = string
+  default     = "c5.xlarge"
+}
+
 
 locals {
   cidrbits = tonumber(split("/", var.secondary_cidr)[1])

@@ -108,5 +108,4 @@ resource "aws_lambda_permission" "LambdaENIPermission" {
   function_name = aws_lambda_function.FwInit.function_name
   principal     = "sns.amazonaws.com"
   source_arn    = aws_sns_topic.LambdaENISNSTopic.arn
-  qualifier     = aws_lambda_alias.test_alias.name
 }
