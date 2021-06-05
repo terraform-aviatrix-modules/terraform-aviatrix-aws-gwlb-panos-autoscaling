@@ -3,20 +3,6 @@ resource "aws_iam_role" "LambdaExecutionRole" {
 
   assume_role_policy = <<EOF
 {
-            "AssumeRolePolicyDocument": {
-               "Version": "2012-10-17",
-               "Statement": [ {
-                 "Effect": "Allow",
-                 "Principal": {
-                 "Service": "lambda.amazonaws.com"
-                },
-                "Action": "sts:AssumeRole"
-              } ]
-            },
-            "Path":"/",
-            "Policies": [ {
-              "PolicyName": "LambdaExecutionRolePolicy",
-              "PolicyDocument":{
                 "Version": "2012-10-17",
                 "Statement": [{
                     "Effect": "Allow",
@@ -163,7 +149,7 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                     "Action": "dynamodb:*",
                     "Resource": "arn:aws:dynamodb:*:*:*"
                 }]
-    }}]}
+}
 EOF
 }
 
