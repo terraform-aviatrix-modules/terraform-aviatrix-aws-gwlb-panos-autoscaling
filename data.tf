@@ -11,16 +11,28 @@ data "aws_ami" "panos_ami" {
   owners = ["679593333241"] # Palo Alto
 }
 
+data "aws_nat_gateway" "Az1NatSubnet" {
+    availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
+    vpc_id = var.aviatrix_vpc.vpc_id
+    filter {
+        name   = "name"
+        values = ["*gwlb-egress"]      
+    }
+}
+
+data "aws_nat_gateway" "Az2NatSubnet" {
+    availability_zone = "${var.aviatrix_vpc.region}${var.az1}"
+    vpc_id = var.aviatrix_vpc.vpc_id
+    filter {
+        name   = "name"
+        values = ["*gwlb-egress"]      
+    }
+}
+
 data "aws_nat_gateway" "Az1NatGW" {
-  filter {
-    name   = "name"
-    values = ["${var.transit_gateway.gw_name}-gwlb-egress"]
-  }
+  subnet_id = data.aws_subnet.Az1NatSubnet
 }
 
 data "aws_nat_gateway" "Az2NatGW" {
-  filter {
-    name   = "name"
-    values = ["${var.transit_gateway.gw_name}-hagw-gwlb-egress"]
-  }
+  subnet_id = data.aws_subnet.Az2NatSubnet
 }
