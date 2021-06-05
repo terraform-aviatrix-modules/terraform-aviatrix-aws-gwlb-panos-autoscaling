@@ -46,6 +46,17 @@ variable "Az2NatGW" {
   type        = string
 }
 
+variable "ASGScaleMap" {
+  type = map(string)
+  default = {
+    "MaxInstances" : { "ASG" : "5" },
+    "ScaleUpThreshold" : { "ASG" : "80" },
+    "ScaleDownThreshold" : { "ASG" : "20" },
+    "ScalingParam" : { "CPU" : "DataPlaneCPUUtilizationPct", "AS" : "panSessionActive", "SU" : "panSessionUtilization", "SSPU" : "panSessionSslProxyUtilization", "GPU" : "panGPGatewayUtilizationPct", "GPAT" : "panGPGWUtilizationActiveTunnels", "DPB" : "DataPlanePacketBufferUtilization" },
+    "ScalingPeriod" : { "ASG" : "900" }
+  }
+}
+
 locals {
   cidrbits = tonumber(split("/", var.secondary_cidr)[1])
   newbits  = 28 - local.cidrbits
