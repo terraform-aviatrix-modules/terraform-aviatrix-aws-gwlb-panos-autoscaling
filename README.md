@@ -19,10 +19,9 @@ module "panw_autoscaling_cluster" {
   source  = "terraform-aviatrix-modules/aws-gwlb-panos-autoscaling/aviatrix"
   version = "1.0.0"
 
-  secondary_cidr = "10.1.1.0/24"
-  aviatrix_vpc = module.transit_firenet.vpc
-  Az1NatGW = "nat-00000000000000000"
-  Az2NatGW = "nat-00000000000000000"
+  secondary_cidr  = "10.1.1.0/24"
+  aviatrix_vpc    = module.transit_firenet.vpc
+  transit_gateway = module.transit_firenet.transit_gateway
   
 }
 ```

@@ -1,16 +1,3 @@
-data "aws_ami" "panos_ami" {
-  most_recent = true
-  filter {
-    name   = "name"
-    values = [var.panos_image_name]
-  }
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  owners = ["679593333241"] # Palo Alto
-}
-
 resource "aws_launch_template" "FWLaunchTemplate" {
   name                    = "FWLaunchTemplate"
   image_id                = data.aws_ami.panos_ami.id

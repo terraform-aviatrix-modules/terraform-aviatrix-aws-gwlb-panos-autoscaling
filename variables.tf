@@ -2,6 +2,10 @@ variable "aviatrix_vpc" {
   description = "VPC Object with all attributes"
 }
 
+variable "transit_gateway" {
+  description = "Transit gateway Object with all attributes"
+}
+
 variable "secondary_cidr" {
   description = "Secondary CIDR Block to add to Transit Firenet VPC. Used for deployment of all resources in this module."
   type        = string
@@ -34,16 +38,6 @@ variable "fw_instance_size" {
   description = "AWS Instance size for the NGFW's"
   type        = string
   default     = "m4.xlarge"
-}
-
-variable "Az1NatGW" {
-  description = "NAT GW ID for AZ1"
-  type        = string
-}
-
-variable "Az2NatGW" {
-  description = "NAT GW ID for AZ2"
-  type        = string
 }
 
 variable "ASGScaleMap" {
