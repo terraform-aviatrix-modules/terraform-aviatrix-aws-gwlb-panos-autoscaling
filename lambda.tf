@@ -20,28 +20,13 @@ resource "aws_iam_role" "LambdaExecutionRole" {
                 "Version": "2012-10-17",
                 "Statement": [{
                     "Effect": "Allow",
-                    "Action": "s3:ListBucket",
-                    "Resource": { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Ref" : "BootstrapS3Bucket" }, "/*" ] ] }
-                },
-                {  
-                    "Effect": "Allow",
-                    "Action": "s3:GetObject",
-                    "Resource": { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Ref" : "BootstrapS3Bucket" }, "/*" ] ] }
-                },
-                {
-                        "Effect": "Allow",
-                        "Action": "s3:ListBucket",
-                        "Resource": { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Fn::If" : [ "PANWScript", { "Fn::Join": [ "-", [ "panw-aws-autoscale-v30", { "Ref": "AWS::Region" }]]}, { "Ref" : "LambdaS3Bucket" }] }] ] }
-                },
-                {  
-                        "Effect": "Allow",
-                        "Action": "s3:GetObject",
-                        "Resource": { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Fn::If" : [ "PANWScript", { "Fn::Join": [ "-", [ "panw-aws-autoscale-v30", { "Ref": "AWS::Region" }]]}, { "Ref" : "LambdaS3Bucket" }] }, "/*" ] ] }
+                    "Action": [ "s3:ListBucket", "s3:GetObject", "s3:ListBucket" ]
+                    "Resource": [ "*" ]
                 },
                 {
                         "Effect": "Allow",
                         "Action": ["iam:UpdateAssumeRolePolicy","iam:GetRole","iam:PassRole", "iam:CreateServiceLinkedRole"],
-                        "Resource": ["*" ]
+                        "Resource": ["*"]
                 },
                 {
                     "Effect": "Allow",
