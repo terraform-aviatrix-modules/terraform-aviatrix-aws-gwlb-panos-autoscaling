@@ -3,9 +3,17 @@ resource "aws_iam_role" "LambdaExecutionRole" {
   assume_role_policy = file("${path.module}/resources/lambda_iam_role.json")
 }
 
+data "template_file" "LambdaExecutionPolicy" {
+  template = file("${path.module}/resources/lambda_iam_policy.json.tpl")
+
+  vars = {
+    s3_bucket = aws_s3_bucket.aviatrix-palo-alto-bootstrap-bucket.arn
+  }
+}
+
 resource "aws_iam_policy" "LambdaExecutionPolicy" {
   name   = "LambdaExecutionPolicy"
-  policy = file("${path.module}/resources/lambda_iam_policy.json")
+  policy = data.template_file.LambdaExecutionPolicy.rendered
 }
 
 resource "aws_iam_role_policy_attachment" "LambdaExecutionPolicyAttachment" {
@@ -15,12 +23,12 @@ resource "aws_iam_role_policy_attachment" "LambdaExecutionPolicyAttachment" {
 
 resource "aws_iam_role" "ASGNotifierRole" {
   name               = "ASGNotifierRole"
-  assume_role_policy = file("${path.module}/resources/lambda_iam_role.json")
+  assume_role_policy = file("${path.module}/resources/ASGNotifierRole.json")
 }
 
 resource "aws_iam_policy" "ASGNotifierRolePolicy" {
   name   = "ASGNotifierRolePolicy"
-  policy = file("${path.module}/resources/lambda_iam_policy.json")
+  policy = file("${path.module}/resources/ASGNotifierPolicy.json")
 }
 
 resource "aws_iam_role_policy_attachment" "ASGNotifierRolePolicyAttachment" {
@@ -109,3 +117,34 @@ resource "aws_lambda_permission" "LambdaENIPermission" {
   principal     = "sns.amazonaws.com"
   source_arn    = aws_sns_topic.LambdaENISNSTopic.arn
 }
+
+# resource "aws_cloudformation_stack" "network" {
+#   name = "networking-stack"
+
+#   parameters = {
+#     VPCCidr = "10.0.0.0/16"
+#   }
+
+#   template_body = <<STACK
+# {
+#   "Parameters" : {
+#     "VPCCidr" : {
+#       "Type" : "String",
+#       "Default" : "10.0.0.0/16",
+#       "Description" : "Enter the CIDR block for the VPC. Default is 10.0.0.0/16."
+#     }
+#   },
+#   "Resources" : {
+#     "myVpc": {
+#       "Type" : "AWS::EC2::VPC",
+#       "Properties" : {
+#         "CidrBlock" : { "Ref" : "VPCCidr" },
+#         "Tags" : [
+#           {"Key": "Name", "Value": "Primary_CF_VPC"}
+#         ]
+#       }
+#     }
+#   }
+# }
+# STACK
+# }
