@@ -45,9 +45,17 @@ resource "aws_iam_role" "FirewallBootstrapRole" {
   assume_role_policy = file("${path.module}/resources/bootstrap_iam_role.json")
 }
 
+data "template_file" "aviatrix-palo-alto-bootstrap-iam-policy" {
+  template = file("${path.module}/resources/bootstrap_iam_policy.json.tpl")
+
+  vars = {
+    s3_bucket = aws_s3_bucket.aviatrix-palo-alto-bootstrap-bucket.arn
+  }
+}
+
 resource "aws_iam_policy" "aviatrix-palo-alto-bootstrap-iam-policy" {
   name   = "aviatrix-palo-alto-bootstrap-iam-policy"
-  policy = file("${path.module}/resources/bootstrap_iam_policy.json")
+  policy = data.template_file.aviatrix-palo-alto-bootstrap-iam-policy.rendered
 }
 
 resource "aws_iam_role_policy_attachment" "aviatrix-palo-alto-bootstrap-iam-policy-role-attachment" {
